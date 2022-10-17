@@ -16,6 +16,7 @@ tblStudents.tBodies[0].addEventListener('click', ({ target: elm }) => {
         const index = students.findIndex(student => student.rowElm === elmRow);
         students.splice(index, 1);
         elmRow.remove();
+        btnNew.click();
 
         if (!tblStudents.tBodies[0].rows.length) {
             tblStudents.classList.add("empty");
@@ -61,7 +62,7 @@ class Student {
     }
     set contact(contact) {
         this.#contact = contact;
-        this.#contactCell.innerText=contact
+        this.#contactCell.innerText = contact
     }
 
 
@@ -75,7 +76,7 @@ class Student {
         // nameCell.innerText = this.name;
         // contactCell.innerText = this.contact;
         removeCell.innerHTML = `<i class="bi bi-trash"></i>`;
-        
+
         this.id = id;
         this.name = name;
         this.address = address;
@@ -122,7 +123,18 @@ btnNew.addEventListener('click', () => {
 });
 
 function genarateNewStudentId() {
-    return "S001";
+    if (!students.length) {
+        return "S001";
+    } else {
+        const newId = +students[students.length - 1].id.replace("S", "") + 1;
+        if (newId < 10) {
+            return `S00${newId}`;
+        } else if (newId < 100) {
+            return `S0${newId}`;
+        } else {
+            return `S${newId}`;
+        }
+    }
 }
 
 btnSave.addEventListener('click', () => {
@@ -147,7 +159,7 @@ btnSave.addEventListener('click', () => {
     }
     if (btnSave.innerText === 'Save Student') {
         students.push(new Student(txtId.value, txtName.value, txtAddress.value, txtContact.value));
-
+        btnNew.click();
     } else {
         selectedStudent.name = txtName.value;
         selectedStudent.address = txtAddress.value;
