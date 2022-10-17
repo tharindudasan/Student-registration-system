@@ -1,0 +1,37 @@
+table {
+
+    td:first-child,
+    th:first-child,
+    td:last-child {
+        text-align: center;
+    }
+
+    td,
+    th {
+        vertical-align: center;
+    }
+
+    td:last-child {
+        font-size: 24px;
+
+        i:hover {
+            color: red;
+        }
+    }
+
+    tbody tr {
+        cursor: pointer;
+    }
+}
+
+.col-id {
+    text-align: 70px;
+}
+
+.col-contact {
+    text-align: 150px;
+}
+
+.col-remove {
+    text-align: 70px;
+}
