@@ -1,4 +1,15 @@
 table {
+    &.empty tfoot {
+        display: table-footer-group;
+    }
+
+    tfoot {
+        display: none;
+    }
+
+    tbody tr.selected {
+        background-color: aqua;
+    }
 
     td:first-child,
     th:first-child,
